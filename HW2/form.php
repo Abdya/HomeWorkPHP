@@ -15,7 +15,7 @@
     Password: <input type="text" name="enter_pass" /><br>
     <input type="submit" value="PushPush"/><br>
     <?php
-    echo "<span class='colo'>$enter_login</span>";
+    echo equal();
     ?>
 </form>
 </body>

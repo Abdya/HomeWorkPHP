@@ -24,7 +24,8 @@ for ($i=1; $i<count($comoon); $i+=2){
 <h2>Chet</h2>
 <?php
 for ($i=0; $i<count($comoon); $i+=2){
-    echo "{$comoon[$i]} <strong><span class='colo2'>$i</span></strong> <br>";
+    $bdya=round($comoon[$i],2);
+    echo "$bdya <strong><span class='colo2'>$i</span></strong> <br>";
 }
 ?>
 &copy;AbdyaProduction<br>
