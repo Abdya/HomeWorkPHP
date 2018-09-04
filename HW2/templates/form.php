@@ -15,7 +15,7 @@
     Password: <input type="text" name="enter_pass" /><br>
     <input type="submit" value="PushPush"/><br>
     <?php
-    echo equal();
+    printik();
     ?>
 </form>
 </body>
