@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/HW2/assets/images/jaba.gif">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Jaba Klava</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/HW2/assets/css/bootstrap.css" rel="stylesheet">
