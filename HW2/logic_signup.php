@@ -1,8 +1,5 @@
 <?php
-require "../config.php";
-function is_user_exists($enter_login){
-    return file_exists("$enter_login.json");
-}
+require "common.php";
 function create()
 {
     if (empty($_POST['enter_login']) || empty($_POST['enter_pass'])) {
@@ -28,8 +25,7 @@ function create()
     #$filename = "$enter_name.json";
     #$handle = fopen("$filename", 'w+');
     $target_filename = dirname(__FILE__) . "";
-    var_dump($target_filename);
-    $handle = fopen("$target_filename\$enter_name.json", "w+");
+    $handle = fopen(USERS_DIR."/$enter_name.json", "w+");
     fwrite($handle, $complete_form);
     fclose($handle);
     ?>

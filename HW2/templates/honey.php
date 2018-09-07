@@ -22,12 +22,16 @@
     <h1 class="h3 mb-3 font-weight-normal">Welcome</h1>
     <h1 class="h3 mb-3 font-weight-normal">Please sign in or create account</h1>
     <?php
-    printik();
-    ?>
+    if ($error){?>
+        <div class="alert alert-danger" role="alert">
+        <?php echo $error ?>
+    </div>
+<?php    }?>
+
     <input type="text" id="inputLogin" class="form-control"  placeholder="Login" required autofocus name="enter_login">
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="enter_password">
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <a href="/HW2/users/logic_signup.php" id="btn" class="btn btn-lg btn-primary btn-block" type="button">Sign up</a>
+    <a href="/HW2/logic_signup.php" id="btn" class="btn btn-lg btn-primary btn-block" type="button">Sign up</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
 </form>
 </body>
