@@ -25,10 +25,9 @@
     printik();
     ?>
     <input type="text" id="inputLogin" class="form-control"  placeholder="Login" required autofocus name="enter_login">
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="enter_pass">
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="enter_password">
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <!--<button class="btn btn-lg btn-primary btn-block" type="button" onclick="window.location='test.local/HW2/users/sign_up.php'">Sign up</button>-->
-    <input class="btn btn-lg btn-primary btn-block">
+    <a href="/HW2/users/logic_signup.php" id="btn" class="btn btn-lg btn-primary btn-block" type="button">Sign up</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
 </form>
 </body>

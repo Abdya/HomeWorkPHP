@@ -1,5 +1,5 @@
 <?php
-function find($enter_login, $enter_pass)
+function find($enter_login, $enter_password)
 {
     $filename = dirname(__FILE__) . "/users/$enter_login.json";
 
@@ -7,7 +7,7 @@ function find($enter_login, $enter_pass)
         $tmp_login = file_get_contents("./users/$enter_login.json");
         $tmp_login = json_decode($tmp_login, true);
 
-        if ($tmp_login['pass'] === $enter_pass){
+        if (password_verify($enter_password, $tmp_login['password'])){
             return $tmp_login;
         }
     }
@@ -17,27 +17,25 @@ function find($enter_login, $enter_pass)
 
 function printik()
 {
-    /*if (empty($_POST['enter_login']) || empty($_POST['enter_pass'])){
-
+    if (empty($_POST['enter_login']) || empty($_POST['enter_password'])) {
+        return;
     }
-    else{*/
-        $enter_login = $_POST['enter_login'];
-        $enter_pass = $_POST['enter_pass'];
-        $user = find($enter_login, $enter_pass);
+    $enter_login = $_POST['enter_login'];
+    $enter_password = $_POST['enter_password'];
+    $user = find($enter_login, $enter_password);
 
-        if ($user === null){?>
-            <div class="alert alert-danger" role="alert">
-                Go out of here, jaba
-            </div>
-<?php
-        }
-        else{?>
-            <div class="alert alert-success" role="alert">
-                Well done boy <?php echo $user['name'] ?>
-            </div>
-<?php        }
-
-    }
-
+    if ($user === null) {
+        ?>
+        <div class="alert alert-danger" role="alert">
+            Go out of here, jaba
+        </div>
+        <?php
+    } else {
+        ?>
+        <div class="alert alert-success" role="alert">
+            Well done boy <?php echo $user['name'] ?>
+        </div>
+    <?php }
+}
 
 require "templates/honey.php";

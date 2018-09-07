@@ -1,22 +1,42 @@
 <?php
+require "../config.php";
+function is_user_exists($enter_login){
+    return file_exists("$enter_login.json");
+}
 function create()
 {
+    if (empty($_POST['enter_login']) || empty($_POST['enter_pass'])) {
+        return;
+    }
     $enter_login = $_POST['enter_login'];
-    $enter_pass = $_POST['enter_pass'];
+    $enter_pass = password_hash($_POST['enter_pass'], PASSWORD_BCRYPT);
     $enter_email = $_POST['enter_email'];
     $enter_name = $_POST['enter_name'];
-    $form=[$enter_login, $enter_pass, $enter_email, $enter_name];
+    if (is_user_exists($enter_login)){?>
+        <div class="alert alert-danger" role="alert">
+            Try another login
+        </div>
+        <?php return;
+    }
+    $form = array(
+        "login" => $enter_login,
+        "password" => $enter_pass,
+        "email" => $enter_email,
+        "name" => $enter_name,
+    );
     $complete_form = json_encode($form);
     #$filename = "$enter_name.json";
     #$handle = fopen("$filename", 'w+');
-    $handle = fopen("/$enter_name.json", "w+");
+    $target_filename = dirname(__FILE__) . "";
+    var_dump($target_filename);
+    $handle = fopen("$target_filename\$enter_name.json", "w+");
     fwrite($handle, $complete_form);
     fclose($handle);
     ?>
     <div class="alert alert-primary" role="alert">
-        A simple primary alert—check it out!
+        Well done man
     </div>
     <?php
-    #var_dump("$enter_name.json");
 }
+
 require "sign_up.php";
