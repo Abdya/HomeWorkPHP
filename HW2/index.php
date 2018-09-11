@@ -9,8 +9,14 @@ if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
     if ($user === null || !password_verify($enter_password, $user["password"])) {
         $error='GO OUT OF HERE FUCKING JABA!';
     } else {
-        header("Location: /HW2/info_user.php?login=$enter_login");
-        exit;
+        if ($user["role"]==="admin"){
+            header("Location: /HW2/hello_adm.php?login=$enter_login");
+        }
+        else{
+            header("Location: /HW2/info_user.php?login=$enter_login");
+            exit;
+        }
+
     }
 }
 require "templates/honey.php";

@@ -16,3 +16,10 @@ function find($enter_login)
 
     return null;
 }
+function parse()
+{
+    foreach (glob(USERS_DIR."/*.json") as $filename)
+    {
+        $user = dirname(__FILE__) . $filename;
+    }
+}

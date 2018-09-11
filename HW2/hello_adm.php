@@ -1,5 +1,7 @@
 <?php
 require "common.php";
+$login = $_GET["login"];
+$user=find($login)
 ?>
 <!doctype html>
 <html lang="en">
@@ -8,20 +10,15 @@ require "common.php";
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/HW2/assets/images/frog.gif">
 
-    <title>Jaba user list</title>
+    <title>Jaba admin</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/HW2/assets/css/bootstrap.css" rel="stylesheet">
 
-
 </head>
-
 <body>
-<?php
-parse();
-?>
-<p class="mt-5 mb-3 text-muted text-center">&copy; 2018</p>
+<h1 class="h3 mb-3 font-weight-normal">Hello admin <?php echo $user["name"]?></h1>
+<a href="user_list.php" id="btn" class="btn btn-lg btn-primary btn-block" type="button">User list</a>
 </body>
 </html>
