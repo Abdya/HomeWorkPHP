@@ -18,8 +18,19 @@ function find($enter_login)
 }
 function parse()
 {
+    $user_list_tmp = [];
     foreach (glob(USERS_DIR."/*.json") as $filename)
     {
-        $user = dirname(__FILE__) . $filename;
+        $user = file_get_contents("$filename");
+        $user = json_decode($user, true);
+        array_push($user_list_tmp, $user);
     }
+
+    return $user_list_tmp;
 }
+$roles = [
+    "user" => "User",
+    "godzila" => "Godzila",
+    "motherfucker" => "MAFucker",
+    "admin" => "Admin",
+];
