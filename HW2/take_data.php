@@ -13,13 +13,17 @@ $file = file_get_contents($path);
 $temp = json_decode($file, true);
 
 unset($file);
-$temp[] = array(
+$new_user_data = [
     "login" => $login_new,
     "email" => $email,
     "name" => $name,
     "role" => $role,
-    "active" => $active
-);
+    "active" => $active,
+];
+if (!empty($_POST["password"])){
+    $new_user_data["password"] = hash_the_fucking_password($_POST["password"]);
+}
+$temp = array_merge($temp, $new_user_data);
 file_put_contents($path, json_encode($temp));
 
 

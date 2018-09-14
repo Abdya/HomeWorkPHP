@@ -22,10 +22,11 @@ $user=find($login);
 <body>
 
 <form class="form-signin" novalidate action="/HW2/take_data.php?login=<?php echo $login?>" method="post">
-    <h1 class="h3 mb-3 font-weight-normal">User: <?php echo $user["name"]?></h1>
+    <h1 class="h3 mb-3 font-weight-normal">User: <?php echo $user["login"]?></h1>
     <input type="text" id="inputLogin" class="form-control"  placeholder="Login" name= "login" value="<?php echo $user["login"] ?>">
     <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" value="<?php echo $user["email"] ?>">
     <input type="text" id="inputName" class="form-control" placeholder="Name" name="name" value="<?php echo $user["name"] ?>">
+    <input type="password" id="inputPass" class="form-control" placeholder="NEW Password" name="password">
     <div class="form-group">
         <label for="inputState">Role</label>
         <select id="inputState" name="role"  class="form-control">

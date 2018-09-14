@@ -17,14 +17,33 @@ require "common.php";
 
 
 </head>
-<body>
-<?php
-$big_boy=parse();
-foreach ($big_boy as $value){?>
+<body >
 
-    <a href="edit_user.php?login=<?php echo $value["login"]?>" class="h3 mb-3 font-weight-normal"><?php echo "User: {$value['name']}\n";?></a><?php
-}
-?>
+<div class="container">
+    <!-- Content here -->
+    <h1 class="text-center m-5" >USER LIST</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Login</th>
+        <th scope="col">Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php $big_boy=parse();
+    foreach ($big_boy as $value){ ?>
+    <tr>
+
+        <td><a href="edit_user.php?login=<?php echo $value["login"] ?>"><?php echo $value["login"] ?></a></td>
+        <td><?php echo $value['name'] ?></td>
+
+    </tr>
+    <?php } ?>
+    </tbody>
+</table>
+</div>
+
 
 <p class="mt-5 mb-3 text-muted text-center">&copy; 2018</p>
 </body>

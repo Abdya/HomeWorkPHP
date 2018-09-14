@@ -6,15 +6,19 @@ if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
     $enter_password = $_POST['enter_password'];
     $user = find($enter_login);
 
-    if ($user === null || !password_verify($enter_password, $user["password"])) {
+    if ($user === null || !verify_the_fucking_password($enter_password, $user["password"])) {
         $error='GO OUT OF HERE FUCKING JABA!';
     } else {
         if ($user["role"]==="admin"){
             header("Location: /HW2/hello_adm.php?login=$enter_login");
         }
-        else{
-            header("Location: /HW2/info_user.php?login=$enter_login");
-            exit;
+        else {
+            if ($user["active"] === false) {
+                $error = 'YOU SHALL NOT PASS!!!!111!1!!!';
+            } else {
+                header("Location: /HW2/info_user.php?login=$enter_login");
+                exit;
+            }
         }
 
     }

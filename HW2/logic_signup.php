@@ -1,12 +1,14 @@
 <?php
 require "common.php";
+require "config.php";
+
 function create()
 {
     if (empty($_POST['enter_login']) || empty($_POST['enter_pass'])) {
         return;
     }
     $enter_login = $_POST['enter_login'];
-    $enter_pass = password_hash($_POST['enter_pass'], PASSWORD_BCRYPT);
+    $enter_pass = hash_the_fucking_password($_POST['enter_pass']);
     $enter_email = $_POST['enter_email'];
     $enter_name = $_POST['enter_name'];
     if (is_user_exists($enter_login)){?>
@@ -20,6 +22,8 @@ function create()
         "password" => $enter_pass,
         "email" => $enter_email,
         "name" => $enter_name,
+        "role" => ROLE_USER,
+        "active" => true,
     );
     $complete_form = json_encode($form);
     #$filename = "$enter_name.json";

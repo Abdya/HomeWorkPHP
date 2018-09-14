@@ -34,3 +34,9 @@ $roles = [
     "motherfucker" => "MAFucker",
     "admin" => "Admin",
 ];
+function hash_the_fucking_password($password){
+    return password_hash($password, PASSWORD_BCRYPT);
+}
+function verify_the_fucking_password($password, $password_hash){
+    return password_verify($password, $password_hash);
+}
