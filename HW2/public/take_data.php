@@ -1,8 +1,7 @@
 <?php
-require "common.php";
+require "../includes/common.php";
 $user = $_GET["login"];
 $path = USERS_DIR . "/$user.json";
-#$user=find($login);
 $login_new = $_POST["login"];
 $email = $_POST["email"];
 $name = $_POST["name"];
@@ -28,4 +27,4 @@ file_put_contents($path, json_encode($temp));
 
 
 rename($path, USERS_DIR . "/$login_new.json");
-header("Location: /HW2/edit_user.php?login=$login_new");
+header("Location: /edit_user.php?login=$login_new");

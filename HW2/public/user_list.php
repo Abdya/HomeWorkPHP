@@ -1,5 +1,5 @@
 <?php
-require "common.php";
+require "../includes/common.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -8,12 +8,12 @@ require "common.php";
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/HW2/assets/images/frog.gif">
+    <link rel="icon" href="/assets/images/frog.gif">
 
     <title>Jaba user list</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/HW2/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
 
 
 </head>

@@ -1,6 +1,5 @@
 <?php
-require "common.php";
-require "config.php";
+require "../includes/common.php";
 
 function create()
 {

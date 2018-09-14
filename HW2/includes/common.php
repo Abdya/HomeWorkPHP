@@ -5,11 +5,11 @@ function is_user_exists($enter_login){
 }
 function find($enter_login)
 {
-    $filename = dirname(__FILE__) . "/users/$enter_login.json";
+    $filename = USERS_DIR . "/$enter_login.json";
 
     if (file_exists($filename))
     {
-        $tmp_login = file_get_contents("./users/$enter_login.json");
+        $tmp_login = file_get_contents(USERS_DIR . "/$enter_login.json");
         $tmp_login = json_decode($tmp_login, true);
         return $tmp_login;
     }

@@ -1,5 +1,5 @@
 <?php
-require "common.php";
+require dirname(dirname(__FILE__)) . "/includes/common.php";
 $error=null;
 if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
     $enter_login = $_POST['enter_login'];
@@ -10,17 +10,17 @@ if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
         $error='GO OUT OF HERE FUCKING JABA!';
     } else {
         if ($user["role"]==="admin"){
-            header("Location: /HW2/hello_adm.php?login=$enter_login");
+            header("Location: /hello_adm.php?login=$enter_login");
         }
         else {
             if ($user["active"] === false) {
                 $error = 'YOU SHALL NOT PASS!!!!111!1!!!';
             } else {
-                header("Location: /HW2/info_user.php?login=$enter_login");
+                header("Location: /info_user.php?login=$enter_login");
                 exit;
             }
         }
 
     }
 }
-require "templates/honey.php";
+require "honey.php";

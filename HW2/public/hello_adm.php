@@ -1,5 +1,5 @@
 <?php
-require "common.php";
+require "../includes/common.php";
 $login = $_GET["login"];
 $user=find($login)
 ?>
@@ -14,7 +14,7 @@ $user=find($login)
     <title>Jaba admin</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/HW2/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
 
 </head>
 <body>

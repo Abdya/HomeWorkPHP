@@ -1,9 +1,9 @@
 <?php
-require "common.php";
+require "../includes/common.php";
 $login = $_GET["login"];
 $user = find($login);
 if ($user === null){
-    header('Location: /HW2/index.php');
+    header('Location: /index.php');
     exit;
 }
 ?>
@@ -14,20 +14,20 @@ if ($user === null){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/HW2/assets/images/cat.gif">
+    <link rel="icon" href="/assets/images/cat.gif">
 
     <title>Jaba info</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/HW2/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/HW2/assets/css/signin.css" rel="stylesheet">
+    <link href="/assets/css/signin.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
 <form class="form-signin" method="post">
-    <img class="mb-4" src="/HW2/assets/images/cat.gif" alt="" width="200" height="200">
+    <img class="mb-4" src="/assets/images/cat.gif" alt="" width="200" height="200">
     <div class="card" style="width: 18rem;">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Ваше имечко: <?php echo $user["name"]?></li>

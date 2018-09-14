@@ -1,5 +1,5 @@
 <?php
-require "common.php";
+require "../includes/common.php";
 $login = $_GET["login"];
 $user=find($login);
 ?>
@@ -14,14 +14,14 @@ $user=find($login);
     <title>Jaba Edit</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/HW2/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/HW2/assets/css/signin.css" rel="stylesheet">
+    <link href="/assets/css/signin.css" rel="stylesheet">
 </head>
 <body>
 
-<form class="form-signin" novalidate action="/HW2/take_data.php?login=<?php echo $login?>" method="post">
+<form class="form-signin" novalidate action="/take_data.php?login=<?php echo $login?>" method="post">
     <h1 class="h3 mb-3 font-weight-normal">User: <?php echo $user["login"]?></h1>
     <input type="text" id="inputLogin" class="form-control"  placeholder="Login" name= "login" value="<?php echo $user["login"] ?>">
     <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" value="<?php echo $user["email"] ?>">
