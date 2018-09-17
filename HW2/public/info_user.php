@@ -1,6 +1,6 @@
 <?php
 require "../includes/common.php";
-$login = $_GET["login"];
+$login = $_SESSION["login"];
 $user = find($login);
 if ($user === null){
     header('Location: /index.php');
@@ -33,6 +33,7 @@ if ($user === null){
             <li class="list-group-item">Ваше имечко: <?php echo $user["name"]?></li>
             <li class="list-group-item">Ваш логинчик: <?php echo $user["login"]?></li>
             <li class="list-group-item">Ваше мыльце: <?php echo $user["email"]?></li>
+            <li class="list-group-item">Ваша дата регистрации: <br> <?php echo date("d.m.y H:i:s",strtotime($user["time_login"]))?> UTC</li>
         </ul>
     </div>
 

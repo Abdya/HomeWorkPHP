@@ -23,12 +23,11 @@ function create()
         "name" => $enter_name,
         "role" => ROLE_USER,
         "active" => true,
+        "time_reg" => gmdate("Y-m-d H:i:s")
     );
     $complete_form = json_encode($form);
-    #$filename = "$enter_name.json";
-    #$handle = fopen("$filename", 'w+');
     $target_filename = dirname(__FILE__) . "";
-    $handle = fopen(USERS_DIR."/$enter_name.json", "w+");
+    $handle = fopen(USERS_DIR."/$enter_login.json", "w+");
     fwrite($handle, $complete_form);
     fclose($handle);
     ?>

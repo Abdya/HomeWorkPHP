@@ -40,3 +40,23 @@ function hash_the_fucking_password($password){
 function verify_the_fucking_password($password, $password_hash){
     return password_verify($password, $password_hash);
 }
+function login_time($login){
+    $path = USERS_DIR . "/$login.json";
+    $file = file_get_contents($path);
+    $temp = json_decode($file, true);
+    $new_data = ["time_login" => gmdate("Y-m-d H:i:s")];
+    $temp = array_merge($temp, $new_data);
+    file_put_contents($path, json_encode($temp));
+};
+function check_admin(){
+    if (empty($_SESSION["login"]) || (($user = find($_SESSION["login"]) === null))){
+        header("Location: /index.php");
+        exit;
+    };
+    if ($user["role"] !== "admin"){
+        header("Location: /info_user.php");
+        exit;
+    }
+};
+
+session_start();

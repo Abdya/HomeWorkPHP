@@ -1,7 +1,8 @@
 <?php
 require "../includes/common.php";
+check_admin();
 $login = $_GET["login"];
-$user=find($login);
+$user = find($login); #проверка на логин
 ?>
 <!doctype html>
 <html lang="en">

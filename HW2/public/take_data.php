@@ -18,6 +18,7 @@ $new_user_data = [
     "name" => $name,
     "role" => $role,
     "active" => $active,
+    "time_edit" => gmdate("Y-m-d H:i:s"),
 ];
 if (!empty($_POST["password"])){
     $new_user_data["password"] = hash_the_fucking_password($_POST["password"]);

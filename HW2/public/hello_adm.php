@@ -1,7 +1,7 @@
 <?php
 require "../includes/common.php";
-$login = $_GET["login"];
-$user=find($login)
+$login = $_SESSION["login"];
+$user = find($login);
 ?>
 <!doctype html>
 <html lang="en">
