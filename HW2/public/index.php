@@ -21,6 +21,10 @@ if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
             else {
                 $_SESSION["login"] = $enter_login;
                 login_time($_SESSION["login"]);
+                if ($_POST["remember"] === true)
+                {
+                    setcookie("user_token",  token_gen($_SESSION[]), time() + 3600*24*7);
+                }
                 header("Location: /info_user.php");
                 exit;
             }

@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,8 +30,15 @@
 
     <input type="text" id="inputLogin" class="form-control"  placeholder="Login" required autofocus name="enter_login">
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="enter_password">
+    <div class="form-check mb-2 text-left">
+        <input class="form-check-input" type="checkbox" name="remember" value="1" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+            Remember me
+        </label>
+    </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <a href="logic_signup.php" id="btn" class="btn btn-lg btn-primary btn-block" type="button">Sign up</a>
+    <a href="/logic_signup.php" id="btn" class="btn btn-lg btn-primary btn-block" type="button">Sign up</a>
+
     <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
 </form>
 </body>

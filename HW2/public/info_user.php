@@ -33,7 +33,8 @@ if ($user === null){
             <li class="list-group-item">Ваше имечко: <?php echo $user["name"]?></li>
             <li class="list-group-item">Ваш логинчик: <?php echo $user["login"]?></li>
             <li class="list-group-item">Ваше мыльце: <?php echo $user["email"]?></li>
-            <li class="list-group-item">Ваша дата регистрации: <br> <?php echo date("d.m.y H:i:s",strtotime($user["time_login"]))?> UTC</li>
+            <li class="list-group-item">Ваша дата регистрации: <br> <?php echo date("d.m.y H:i:s",strtotime($user["time_reg"]))?> UTC</li>
+            <li class="list-group-item"><a href="/logout.php" type="submit" class="btn btn-primary">Logout</a></li>
         </ul>
     </div>
 

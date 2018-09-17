@@ -1,5 +1,6 @@
 <?php
 require "../includes/common.php";
+check_admin();
 ?>
 <!doctype html>
 <html lang="en">
