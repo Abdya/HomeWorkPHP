@@ -62,7 +62,7 @@ function check_admin(){
 function token_gen($login)
 {
     $num = random_int(1,64);
-    $token_hash = password_hash($login, PASSWORD_BCRYPT, $num);
+    $token_hash = password_hash($login . $num, PASSWORD_BCRYPT);
     return $token_hash;
 };
 

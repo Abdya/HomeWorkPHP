@@ -26,7 +26,6 @@ function create()
         "time_reg" => gmdate("Y-m-d H:i:s")
     );
     $complete_form = json_encode($form);
-    $target_filename = dirname(__FILE__) . "";
     $handle = fopen(USERS_DIR."/$enter_login.json", "w+");
     fwrite($handle, $complete_form);
     fclose($handle);
