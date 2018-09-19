@@ -1,10 +1,10 @@
 <?php
 require "config.php";
+require "gump.class.php";
 function is_user_exists($enter_login){
     return file_exists(USERS_DIR."/$enter_login.json");
 }
-function find($enter_login)
-{
+function find($enter_login){
     $filename = USERS_DIR . "/$enter_login.json";
 
     if (file_exists($filename))
@@ -16,8 +16,7 @@ function find($enter_login)
 
     return null;
 }
-function parse()
-{
+function parse(){
     $user_list_tmp = [];
     foreach (glob(USERS_DIR."/*.json") as $filename)
     {
@@ -76,7 +75,6 @@ function login_by_remember_me_token()
     $tmp_path = TOKEN_DIR . "/$login";
     $path = TOKEN_DIR . "/$login" . "/$tmp_token.json";
     if (!(file_exists($path))) {
-        #rename(basename($tmp_path, ".json"), $path);
         setcookie("user_token", "", time() - 3600);
         return;
     }

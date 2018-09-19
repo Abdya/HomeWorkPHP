@@ -26,6 +26,4 @@ if (!empty($_POST["password"])){
 $temp = array_merge($temp, $new_user_data);
 file_put_contents($path, json_encode($temp));
 
-
-#rename($path, USERS_DIR . "/$login_new.json");
 header("Location: /edit_user.php?login={$temp["login"]}");
