@@ -49,7 +49,7 @@ function login_time($login){
     file_put_contents($path, json_encode($temp));
 };
 function check_admin(){
-    if (empty($_SESSION["login"]) || (($user = find($_SESSION["login"]) === null))){
+    if (empty($_SESSION["login"]) || (($user = find($_SESSION["login"])) === null)){
         header("Location: /index.php");
         exit;
     };
@@ -65,5 +65,25 @@ function token_gen($login)
     $token_hash = password_hash($login . $num, PASSWORD_BCRYPT);
     return $token_hash;
 };
+function login_by_remember_me_token()
+{
+    if (empty($_COOKIE["user_token"]) || !empty($_SESSION["login"])) {
+        return;
+    }
+    $tmp = base64_decode($_COOKIE["user_token"]);
+    list($login, $token) = explode(":", $tmp);
+    $tmp_token = base64_encode($token);
+    $tmp_path = TOKEN_DIR . "/$login";
+    $path = TOKEN_DIR . "/$login" . "/$tmp_token.json";
+    if (!(file_exists($path))) {
+        #rename(basename($tmp_path, ".json"), $path);
+        setcookie("user_token", "", time() - 3600);
+        return;
+    }
+    $_SESSION["login"] = $login;
+
+
+}
 
 session_start();
+login_by_remember_me_token();
