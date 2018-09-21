@@ -3,6 +3,7 @@ require "../includes/common.php";
 $user = $_GET["login"];
 $path = USERS_DIR . "/$user.json";
 
+
 $email = $_POST["email"];
 $name = $_POST["name"];
 $role = $_POST["role"];
