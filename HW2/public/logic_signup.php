@@ -3,13 +3,10 @@ require "../includes/common.php";
 
 function create()
 {
-    if (empty($_POST['login']) || empty($_POST['pass'])) {
-        return;
-    }
     $gump = new GUMP();
     $_POST = $gump->sanitize($_POST);
     $gump->validation_rules(array(
-        'login' => 'required|alpha_dash|max_len,15|min_len,3',
+        'login' => 'required|alpha_dash|max_len,15|min_len,3|user_exists',
         'pass' => 'required|max_len,20|min_len,3',
         'email' => 'required|valid_email',
         'name' => 'required|alpha|valid_name'
@@ -26,13 +23,6 @@ function create()
         return $errors;
     } else {
         $validated_data["pass"] = hash_the_fucking_password($validated_data["pass"]);
-        if (is_user_exists($validated_data["login"])) {
-            ?>
-            <div class="alert alert-danger" role="alert">
-                Try another login
-            </div>
-            <?php return;
-        }
         $form = array(
             "login" => $validated_data["login"],
             "password" => $validated_data["pass"],

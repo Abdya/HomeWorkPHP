@@ -1,6 +1,10 @@
 <?php
 require "config.php";
 require "gump.class.php";
+GUMP::add_validator("user_exists", function($field, $input, $param = NULL) {
+    return !is_user_exists(strtolower(trim($input[$field])));
+}, "User is already exists!");
+
 function is_user_exists($enter_login){
     return file_exists(USERS_DIR."/$enter_login.json");
 }
