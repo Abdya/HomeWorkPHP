@@ -2,8 +2,13 @@
 require dirname(dirname(__FILE__)) . "/includes/common.php";
 $error = null;
 if (!empty($_SESSION["login"])){
-    header("Location: /info_user.php");
-    die;
+    $user = find($_SESSION["login"]);
+    if ($user["role"] === ROLE_ADMIN){
+        header("Location: /user_list.php");
+    } else {
+        header("Location: /info_user.php");
+    }
+    exit;
 }
 if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
     $enter_login = $_POST['enter_login'];

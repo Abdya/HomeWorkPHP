@@ -3,51 +3,50 @@ require "../includes/common.php";
 
 function create()
 {
-    if (empty($_POST['enter_login']) || empty($_POST['enter_pass'])) {
+    if (empty($_POST['login']) || empty($_POST['pass'])) {
         return;
     }
     $gump = new GUMP();
     $_POST = $gump->sanitize($_POST);
     $gump->validation_rules(array(
-        'enter_login' => 'required|alpha_dash|max_len,15|min_len,3',
-        'enter_pass' => 'required|max_len,20|min_len,3',
-        'enter_email' => 'required|valid_email',
-        'enter_name' => 'required|alpha|valid_name'
+        'login' => 'required|alpha_dash|max_len,15|min_len,3',
+        'pass' => 'required|max_len,20|min_len,3',
+        'email' => 'required|valid_email',
+        'name' => 'required|alpha|valid_name'
     ));
     $gump->filter_rules(array(
-        'enter_login' => 'trim|sanitize_string|lower_case',
-        'enter_pass' => 'trim',
-        'enter_email' => 'trim|sanitize_string',
-        'enter_name' => 'trim',
+        'login' => 'trim|sanitize_string|lower_case',
+        'email' => 'trim|sanitize_string',
+        'name' => 'trim',
     ));
 
-    $validated_data = $gump ->run($_POST);
-    if ($validated_data === false){
-        echo $gump->get_readable_errors(true);
-    } else {} };
-    //todo make logic more humanly
-        /*$validated_data["enter_pass"] = hash_the_fucking_password($validated_data["enter_pass"]);
-        if (is_user_exists($enter_login)){?>
+    $validated_data = $gump->run($_POST);
+    if ($validated_data === false) {
+        $errors = $gump->get_errors_array();
+        return $errors;
+    } else {
+        $validated_data["pass"] = hash_the_fucking_password($validated_data["pass"]);
+        if (is_user_exists($validated_data["login"])) {
+            ?>
             <div class="alert alert-danger" role="alert">
                 Try another login
             </div>
             <?php return;
         }
         $form = array(
-            "login" => $enter_login,
-            "password" => $enter_pass,
-            "email" => $enter_email,
-            "name" => $enter_name,
+            "login" => $validated_data["login"],
+            "password" => $validated_data["pass"],
+            "email" => $validated_data["email"],
+            "name" => $validated_data["name"],
             "role" => ROLE_USER,
             "active" => true,
             "time_reg" => gmdate("Y-m-d H:i:s")
         );
         $complete_form = json_encode($form);
-        $handle = fopen(USERS_DIR."/$enter_login.json", "w+");
+        $handle = fopen(USERS_DIR . "/{$validated_data["login"]}.json", "w+");
         fwrite($handle, $complete_form);
         fclose($handle);
-
-
+    }
 }
 
 require "sign_up.php";
