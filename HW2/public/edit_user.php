@@ -2,6 +2,11 @@
 require "../includes/common.php";
 check_admin();
 $login = $_GET["login"];
+if (!is_user_exists($login)){
+    http_response_code(404);
+    echo "User does not exists";
+    exit;
+}
 $user = find($login); #проверка на логин
 ?>
 <!doctype html>
@@ -24,7 +29,7 @@ $user = find($login); #проверка на логин
 
 <form class="form-signin" novalidate action="/take_data.php?login=<?php echo $login?>" method="post">
     <h1 class="h3 mb-3 font-weight-normal">User: <?php echo $user["login"]?></h1>
-    <input type="text" id="inputLogin" class="form-control"  placeholder="Login" name= "login" value="<?php echo $user["login"] ?>">
+    <input type="text" id="inputLogin" class="form-control" disabled placeholder="Login" name= "login" value="<?php echo $user["login"] ?>">
     <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" value="<?php echo $user["email"] ?>">
     <input type="text" id="inputName" class="form-control" placeholder="Name" name="name" value="<?php echo $user["name"] ?>">
     <input type="password" id="inputPass" class="form-control" placeholder="NEW Password" name="password">

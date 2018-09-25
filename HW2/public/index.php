@@ -8,8 +8,7 @@ if (!empty($_SESSION["login"])){
     } else {
         header("Location: /info_user.php");
     }
-    exit;
-}
+    exit;}
 if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
     $enter_login = $_POST['enter_login'];
     $enter_password = $_POST['enter_password'];
@@ -36,7 +35,7 @@ if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
                     fclose($handle);
                 }
 
-                // todo: redirect to index.php if all bad
+
                 setcookie("user_token", base64_encode($_SESSION["login"] . ":" . $tmp_token), time() + 3600*24*7);
             }
 
