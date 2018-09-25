@@ -29,10 +29,13 @@ $user = find($login); #проверка на логин
 
 <form class="form-signin" novalidate action="/take_data.php?login=<?php echo $login?>" method="post">
     <h1 class="h3 mb-3 font-weight-normal">User: <?php echo $user["login"]?></h1>
-    <input type="text" id="inputLogin" class="form-control" disabled placeholder="Login" name= "login" value="<?php echo $user["login"] ?>">
+    <input type="text" id="inputLogin" class="form-control mb-3" disabled placeholder="Login" name= "login" value="<?php echo $user["login"] ?>">
     <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" value="<?php echo $user["email"] ?>">
+    <p class="mb-3 text-left"><?php echo !empty($errors["email"]) ? $errors["email"] : "" ?></p>
     <input type="text" id="inputName" class="form-control" placeholder="Name" name="name" value="<?php echo $user["name"] ?>">
-    <input type="password" id="inputPass" class="form-control" placeholder="NEW Password" name="password">
+    <p class="mb-3 text-left"><?php echo !empty($errors["name"]) ? $errors["name"] : "" ?></p>
+    <input type="password" id="inputPass" class="form-control" placeholder="NEW Password" name="pass">
+    <p class="mb-3 text-left"><?php echo !empty($errors["pass"]) ? $errors["pass"] : "" ?></p>
     <div class="form-group">
         <label for="inputState">Role</label>
         <select id="inputState" name="role"  class="form-control">

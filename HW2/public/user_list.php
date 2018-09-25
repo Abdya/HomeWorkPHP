@@ -43,6 +43,7 @@ check_admin();
     <?php } ?>
     </tbody>
 </table>
+    <p class="text-center"><a href="/logout.php" type="submit" class="btn btn-primary">Logout</a></p>
 </div>
 
 

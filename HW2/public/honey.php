@@ -28,9 +28,9 @@
     </div>
 <?php    }?>
 
-    <input type="text" id="inputLogin" class="form-control"  placeholder="Login" required autofocus name="enter_login">
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="enter_password">
-    <div class="form-check mb-2 text-left">
+    <input type="text" id="inputLogin" class="form-control mb-3"  placeholder="Login" required autofocus name="enter_login">
+    <input type="password" id="inputPassword" class="form-control mb-3" placeholder="Password" required name="enter_password">
+    <div class="form-check mb-3 text-left">
         <input class="form-check-input" type="checkbox" name="remember" value="1" id="defaultCheck1">
         <label class="form-check-label" for="defaultCheck1">
             Remember me
