@@ -1,3 +1,10 @@
+<?php
+require "../includes/common.php";
+if (!empty($_SESSION["error"])){
+    $error = $_SESSION["error"];
+    unset($_SESSION["error"]);
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,6 +28,6 @@
     <h1 class="h3 mb-3 font-weight-normal">Welcome</h1>
     <h1 class="h3 mb-3 font-weight-normal">Please enter your email</h1>
     <input type="text" id="inputEmail" class="form-control mb-3"  placeholder="Email" required autofocus name="email">
+    <p class="mb-3 text-left"><?php echo !empty($error["email"]) ? $error["email"] : "" ?></p>
     <button class="btn btn-lg btn-success btn-block mb-3" type="submit">Reset password</button>
-    <?php ?>
-    <p class="text-center">Email will be sent if account with entered email exist</p>
+    <?php if (!empty($_SESSION["password_reset"])):?><p class="text-center">Email will be sent if account with entered email exist</p><?php endif;

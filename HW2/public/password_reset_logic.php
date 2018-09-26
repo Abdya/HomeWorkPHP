@@ -15,3 +15,6 @@ if ($validated_data === false){
     header("Location: /password_reset.php");
     exit;
 }
+
+$_SESSION["password_reset"] = true;
+header("Location: /password_reset.php");
