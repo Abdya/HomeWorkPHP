@@ -25,7 +25,7 @@ function create()
         $validated_data["pass"] = hash_the_fucking_password($validated_data["pass"]);
         $form = array(
             "login" => $validated_data["login"],
-            "password" => $validated_data["pass"],
+            "pass" => $validated_data["pass"],
             "email" => $validated_data["email"],
             "name" => $validated_data["name"],
             "role" => ROLE_USER,

@@ -2,6 +2,11 @@
 require "../includes/common.php";
 check_admin();
 $login = $_GET["login"];
+if (!empty($_SESSION["errors"])){
+    $errors = $_SESSION["errors"];
+    unset($_SESSION["errors"]);
+}
+
 if (!is_user_exists($login)){
     http_response_code(404);
     echo "User does not exists";

@@ -13,7 +13,7 @@ $_POST = $gump->sanitize($_POST);
 $gump->validation_rules(array(
     'email' => 'required|valid_email',
     'name' => 'required|alpha|valid_name',
-    'pass' => 'required|max_len,20|min_len,3',
+    'pass' => 'max_len,20|min_len,3',
 ));
 $gump->filter_rules(array(
     'email' => 'trim|sanitize_string',
@@ -24,7 +24,8 @@ $validated_data = $gump->run($_POST);
 if ($validated_data === false) {
     $errors = $gump->get_errors_array();
     $_SESSION["errors"] = $errors;
-    return;
+    header("Location: /edit_user.php?login=$user");
+    exit;
 }
 
 

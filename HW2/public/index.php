@@ -14,7 +14,7 @@ if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
     $enter_password = $_POST['enter_password'];
     $user = find($enter_login);
 
-    if ($user === null || !verify_the_fucking_password($enter_password, $user["password"])) {
+    if ($user === null || !verify_the_fucking_password($enter_password, $user["pass"])) {
         $error = 'GO OUT OF HERE FUCKING JABA!';
     }
     else {
