@@ -16,11 +16,11 @@ if ($validated_data === false){
     exit;
 }
 $login = find($validated_data["login"]);
-$path = USERS_DIR . "/{$validated_data["$login"]}.json";
-$message = token_gen($login);
+$path = USERS_DIR . "/{$validated_data["login"]}.json";
+$message = token_gen($validated_data["login"]);
 $new_data = ["token" => $message];
 push_encode($login,$new_data,$path);
-mail($login["email"], 'Password Reset',"http://hw4.local/new_password_logic.php?login=$login&token=$message");
+mail($login["email"], 'Password Reset',"http://hw4.local/new_password_logic.php?login={$validated_data["login"]}&token=$message");
 $_SESSION["password_reset"] = true;
 
 header("Location: /password_reset.php");

@@ -17,7 +17,7 @@
 </head>
 
 <body class="text-center">
-<form class="form-signin" novalidate action="/password_reset_logic.php" method="post">
+<form class="form-signin" novalidate action="/new_password_logic.php" method="post">
     <h1 class="h3 mb-4 font-weight-normal">Change your password</h1>
     <p class="mb-2 text-left">Enter new password</p>
     <input type="text" id="inputPassword" class="form-control mb-4" required autofocus name="first_pass">

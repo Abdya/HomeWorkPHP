@@ -86,7 +86,7 @@ function login_by_remember_me_token()
 };
 
 function push_encode($user_data,$new_data, $path){
-    array_merge($new_data, $user_data);
+    $user_data = array_merge($user_data, $new_data);
     file_put_contents($path, json_encode($user_data));
 }
 session_start();
