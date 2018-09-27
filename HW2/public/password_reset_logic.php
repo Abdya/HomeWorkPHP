@@ -3,10 +3,10 @@ require "../includes/common.php";
 $gump = new GUMP();
 $_POST = $gump->sanitize($_POST);
 $gump->validation_rules(array(
-    'email' => 'required|valid_email',
+    'login' => 'required|alpha_dash|max_len,15|min_len,3',
 ));
 $gump->filter_rules(array(
-    'email' => 'trim|sanitize_string',
+    'login' => 'trim|sanitize_string|lower_case',
 ));
 $validated_data = $gump->run($_POST);
 if ($validated_data === false){
@@ -15,6 +15,12 @@ if ($validated_data === false){
     header("Location: /password_reset.php");
     exit;
 }
-
+$login = find($validated_data["login"]);
+$path = USERS_DIR . "/{$validated_data["$login"]}.json";
+$message = token_gen($login);
+$new_data = ["token" => $message];
+push_encode($login,$new_data,$path);
+mail($login["email"], 'Password Reset',"http://hw4.local/new_password_logic.php?login=$login&token=$message");
 $_SESSION["password_reset"] = true;
+
 header("Location: /password_reset.php");

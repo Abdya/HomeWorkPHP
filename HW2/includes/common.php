@@ -83,9 +83,11 @@ function login_by_remember_me_token()
         return;
     }
     $_SESSION["login"] = $login;
+};
 
-
+function push_encode($user_data,$new_data, $path){
+    array_merge($new_data, $user_data);
+    file_put_contents($path, json_encode($user_data));
 }
-
 session_start();
 login_by_remember_me_token();
