@@ -32,8 +32,8 @@ check_admin();
     </tr>
     </thead>
     <tbody>
-    <?php $big_boy=parse();
-    foreach ($big_boy as $value){ ?>
+    <?php $big_boy = parse();
+    foreach ($big_boy as $value) { ?>
     <tr>
 
         <td><a href="edit_user.php?login=<?php echo $value["login"] ?>"><?php echo $value["login"] ?></a></td>

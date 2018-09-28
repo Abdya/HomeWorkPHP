@@ -41,7 +41,7 @@ $new_user_data = [
     "active" => !empty($_POST["active"]),
     "time_edit" => gmdate("Y-m-d H:i:s"),
 ];
-if (!empty($validated_data["pass"])){
+if (!empty($validated_data["pass"])) {
     $new_user_data["pass"] = hash_the_fucking_password($validated_data["pass"]);
 }
 

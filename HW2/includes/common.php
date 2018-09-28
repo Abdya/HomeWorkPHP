@@ -5,14 +5,19 @@ GUMP::add_validator("user_exists", function($field, $input, $param = NULL) {
     return !is_user_exists(strtolower(trim($input[$field])));
 }, "User is already exists!");
 
-function is_user_exists($enter_login){
-    return file_exists(USERS_DIR."/$enter_login.json");
+GUMP::add_validator("confirmation", function($field, $input, $param = NULL) {
+    return $input[$field] === $input[$param];
+}, "Passwords must match!");
+
+function is_user_exists($enter_login)
+{
+    return file_exists(USERS_DIR . "/$enter_login.json");
 }
-function find($enter_login){
+function find($enter_login)
+{
     $filename = USERS_DIR . "/$enter_login.json";
 
-    if (file_exists($filename))
-    {
+    if (file_exists($filename)) {
         $tmp_login = file_get_contents(USERS_DIR . "/$enter_login.json");
         $tmp_login = json_decode($tmp_login, true);
         return $tmp_login;
@@ -20,10 +25,10 @@ function find($enter_login){
 
     return null;
 }
-function parse(){
+function parse()
+{
     $user_list_tmp = [];
-    foreach (glob(USERS_DIR."/*.json") as $filename)
-    {
+    foreach (glob(USERS_DIR . "/*.json") as $filename) {
         $user = file_get_contents("$filename");
         $user = json_decode($user, true);
         array_push($user_list_tmp, $user);
@@ -37,13 +42,16 @@ $roles = [
     "motherfucker" => "MAFucker",
     "admin" => "Admin",
 ];
-function hash_the_fucking_password($password){
+function hash_the_fucking_password($password)
+{
     return password_hash($password, PASSWORD_BCRYPT);
 }
-function verify_the_fucking_password($password, $password_hash){
+function verify_the_fucking_password($password, $password_hash)
+{
     return password_verify($password, $password_hash);
 }
-function login_time($login){
+function login_time($login)
+{
     $path = USERS_DIR . "/$login.json";
     $file = file_get_contents($path);
     $temp = json_decode($file, true);
@@ -51,12 +59,13 @@ function login_time($login){
     $temp = array_merge($temp, $new_data);
     file_put_contents($path, json_encode($temp));
 };
-function check_admin(){
-    if (empty($_SESSION["login"]) || (($user = find($_SESSION["login"])) === null)){
+function check_admin()
+{
+    if (empty($_SESSION["login"]) || (($user = find($_SESSION["login"])) === null)) {
         header("Location: /index.php");
         exit;
     };
-    if ($user["role"] !== "admin"){
+    if ($user["role"] !== "admin") {
         header("Location: /info_user.php");
         exit;
     }
@@ -64,7 +73,7 @@ function check_admin(){
 
 function token_gen($login)
 {
-    $num = random_int(1,64);
+    $num = random_int(1, 64);
     $token_hash = password_hash($login . $num, PASSWORD_BCRYPT);
     return $token_hash;
 };
@@ -85,7 +94,10 @@ function login_by_remember_me_token()
     $_SESSION["login"] = $login;
 };
 
-function push_encode($user_data,$new_data, $path){
+function update_user_data($login, $new_data)
+{
+    $path = USERS_DIR . "/$login.json";
+    $user_data = find($login);
     $user_data = array_merge($user_data, $new_data);
     file_put_contents($path, json_encode($user_data));
 }

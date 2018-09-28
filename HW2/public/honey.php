@@ -22,11 +22,11 @@
     <h1 class="h3 mb-3 font-weight-normal">Welcome</h1>
     <h1 class="h3 mb-3 font-weight-normal">Please sign in or create account</h1>
     <?php
-    if ($error){?>
+    if ($error) {?>
         <div class="alert alert-danger" role="alert">
         <?php echo $error ?>
     </div>
-<?php    }?>
+    <?php } ?>
 
     <input type="text" id="inputLogin" class="form-control mb-3"  placeholder="Login" required autofocus name="enter_login">
     <input type="password" id="inputPassword" class="form-control mb-3" placeholder="Password" required name="enter_password">
@@ -38,7 +38,7 @@
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     <a href="/logic_signup.php" id="btn" class="btn btn-lg btn-success btn-block mb-3" type="button">Sign up</a>
-    <a href="/password_reset_logic.php">Forget password?</a>
+    <a href="/password_reset.php">Forgot password?</a>
 
     <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
 </form>

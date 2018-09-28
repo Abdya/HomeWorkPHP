@@ -1,3 +1,17 @@
+<?php
+require "../includes/common.php";
+if (!empty($_GET)) {
+    $login = $_GET["login"];
+    $token = $_GET["token"];
+    $_SESSION["login"] = $login;
+    $_SESSION["token"] = $token;
+}
+
+if (!empty($_SESSION["errors"])) {
+    $errors = $_SESSION["errors"];
+    unset($_SESSION["errors"]);
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,10 +33,11 @@
 <body class="text-center">
 <form class="form-signin" novalidate action="/new_password_logic.php" method="post">
     <h1 class="h3 mb-4 font-weight-normal">Change your password</h1>
-    <p class="mb-2 text-left">Enter new password</p>
-    <input type="text" id="inputPassword" class="form-control mb-4" required autofocus name="first_pass">
-    <p class="mb-2 text-left">Enter the same password</p>
-    <input type="text" id="inputPassword" class="form-control mb-3" required autofocus name="second_pass">
+    <p class="mb-1 text-left">Enter new password</p>
+    <input type="text" id="inputPassword" class="form-control mb-4" required autofocus name="pass">
+    <p class="mb-1 text-left">Confirm password</p>
+    <input type="text" id="inputPassword" class="form-control mb-3" required autofocus name="confirm_pass">
+    <p class="mb-3 text-left"><?php echo !empty($errors["confirm_pass"]) ? $errors["confirm_pass"] : "" ?></p>
     <button class="btn btn-lg btn-success btn-block mb-3" type="submit">Save</button>
 </form>
 </body>

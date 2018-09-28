@@ -2,7 +2,7 @@
 require "../includes/common.php";
 $login = $_SESSION["login"];
 $user = find($login);
-if ($user === null){
+if ($user === null) {
     header('Location: /index.php');
     exit;
 }

@@ -2,12 +2,12 @@
 require "../includes/common.php";
 check_admin();
 $login = $_GET["login"];
-if (!empty($_SESSION["errors"])){
+if (!empty($_SESSION["errors"])) {
     $errors = $_SESSION["errors"];
     unset($_SESSION["errors"]);
 }
 
-if (!is_user_exists($login)){
+if (!is_user_exists($login)) {
     http_response_code(404);
     echo "User does not exists";
     exit;
@@ -45,11 +45,10 @@ $user = find($login); #проверка на логин
         <label for="inputState">Role</label>
         <select id="inputState" name="role"  class="form-control">
             <?php
-            foreach ($roles as $role => $description) {
-                    ?>
+            foreach ($roles as $role => $description) { ?>
                     <option value="<?php echo $role ?>" <?php if ($role === $user["role"]){ ?> selected<?php } ?>><?php echo $description ?></option><?php
             }
-                ?>
+            ?>
         </select>
     </div>
     <div class="form-group row">
