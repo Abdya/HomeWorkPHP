@@ -39,4 +39,4 @@ function create()
     }
 }
 
-require "sign_up.php";
+require "../templates/sign_up.php";

@@ -24,7 +24,7 @@ $validated_data = $gump->run($_POST);
 if ($validated_data === false) {
     $errors = $gump->get_errors_array();
     $_SESSION["errors"] = $errors;
-    header("Location: /edit_user.php?login=$user");
+    header("Location: /user_edit.php?login=$user");
     exit;
 }
 
@@ -49,4 +49,4 @@ if (!empty($validated_data["pass"])) {
 $temp = array_merge($temp, $new_user_data);
 file_put_contents($path, json_encode($temp));
 
-header("Location: /edit_user.php?login=$user");
+header("Location: /user_edit.php?login=$user");

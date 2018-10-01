@@ -1,12 +1,3 @@
-<?php
-require "../includes/common.php";
-$login = $_SESSION["login"];
-$user = find($login);
-if ($user === null) {
-    header('Location: /index.php');
-    exit;
-}
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,8 +28,6 @@ if ($user === null) {
             <li class="list-group-item"><a href="/logout.php" type="submit" class="btn btn-primary">Logout</a></li>
         </ul>
     </div>
-
-
     <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
 </form>
 </body>

@@ -6,7 +6,7 @@ if (!empty($_SESSION["login"])) {
     if ($user["role"] === ROLE_ADMIN) {
         header("Location: /user_list.php");
     } else {
-        header("Location: /info_user.php");
+        header("Location: /user_info.php");
     }
     exit;
 }
@@ -39,9 +39,9 @@ if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
             }
 
             if ($user["role"] === "admin") {
-                header("Location: /hello_adm.php");
+                header("Location: /admin_start_page.php");
             } else {
-                header("Location: /info_user.php");
+                header("Location: /user_info.php");
             }
             exit;
         }
@@ -49,4 +49,4 @@ if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
     }
 }
 
-require "honey.php";
+require "../templates/login.php";

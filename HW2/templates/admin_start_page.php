@@ -1,9 +1,3 @@
-<?php
-require "../includes/common.php";
-$login = $_SESSION["login"];
-check_admin();
-$user = find($login);
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,4 +16,3 @@ $user = find($login);
 <h1 class="h3 mb-3 font-weight-normal">Hello admin <?php echo $user["name"]?></h1>
 <a href="user_list.php" id="btn" class="btn btn-lg btn-primary btn-block" type="button">User list</a>
 </body>
-</html>

@@ -1,19 +1,3 @@
-<?php
-require "../includes/common.php";
-check_admin();
-$login = $_GET["login"];
-if (!empty($_SESSION["errors"])) {
-    $errors = $_SESSION["errors"];
-    unset($_SESSION["errors"]);
-}
-
-if (!is_user_exists($login)) {
-    http_response_code(404);
-    echo "User does not exists";
-    exit;
-}
-$user = find($login); #проверка на логин
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -32,7 +16,7 @@ $user = find($login); #проверка на логин
 </head>
 <body>
 
-<form class="form-signin" novalidate action="/take_data.php?login=<?php echo $login?>" method="post">
+<form class="form-signin" novalidate action="/handle_user_edit.php?login=<?php echo $login?>" method="post">
     <h1 class="h3 mb-3 font-weight-normal">User: <?php echo $user["login"]?></h1>
     <input type="text" id="inputLogin" class="form-control mb-3" disabled placeholder="Login" name= "login" value="<?php echo $user["login"] ?>">
     <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" value="<?php echo $user["email"] ?>">
@@ -46,23 +30,23 @@ $user = find($login); #проверка на логин
         <select id="inputState" name="role"  class="form-control">
             <?php
             foreach ($roles as $role => $description) { ?>
-                    <option value="<?php echo $role ?>" <?php if ($role === $user["role"]){ ?> selected<?php } ?>><?php echo $description ?></option><?php
+                <option value="<?php echo $role ?>" <?php if ($role === $user["role"]){ ?> selected<?php } ?>><?php echo $description ?></option><?php
             }
             ?>
         </select>
     </div>
     <div class="form-group row">
-    <div class="col-sm-2">Turn on/off</div>
-    <div class="col-sm-10">
-        <div class="form-check">
-            <input class="form-check-input" name="active" value="1" <?php if ($user["active"] === true){?> checked<?php } ?> type="checkbox" id="gridCheck1">
+        <div class="col-sm-2">Turn on/off</div>
+        <div class="col-sm-10">
+            <div class="form-check">
+                <input class="form-check-input" name="active" value="1" <?php if ($user["active"] === true){?> checked<?php } ?> type="checkbox" id="gridCheck1">
+            </div>
         </div>
     </div>
-    </div>
     <div class="form-group row">
-    <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary">Save</button>
-    </div>
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
     </div>
     <p class="mt-5 mb-3 text-muted text-center">&copy; 2018</p>
 </form>
