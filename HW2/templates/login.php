@@ -37,7 +37,7 @@
         </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <a href="/logic_signup.php" id="btn" class="btn btn-lg btn-success btn-block mb-3" type="button">Sign up</a>
+    <a href="/handle_signup.php" id="btn" class="btn btn-lg btn-success btn-block mb-3" type="button">Sign up</a>
     <a href="/password_reset.php">Forgot password?</a>
 
     <p class="mt-5 mb-3 text-muted">&copy; 2018</p>

@@ -1,12 +1,12 @@
 <?php
 require "config.php";
-require "gump.class.php";
+require "../vendor/autoload.php";
 require "../autoload.php";
-GUMP::add_validator("user_exists", function($field, $input, $param = NULL) {
+GUMP::add_validator("user_exists", function ($field, $input, $param = null) {
     return !is_user_exists(strtolower(trim($input[$field])));
 }, "User is already exists!");
 
-GUMP::add_validator("confirmation", function($field, $input, $param = NULL) {
+GUMP::add_validator("confirmation", function ($field, $input, $param = null) {
     return $input[$field] === $input[$param];
 }, "Passwords must match!");
 

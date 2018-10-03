@@ -3,6 +3,9 @@ require "../includes/common.php";
 
 function create()
 {
+    if (empty($_POST)) {
+        return [];
+    }
     $gump = new GUMP();
     $_POST = $gump->sanitize($_POST);
     $gump->validation_rules(array(

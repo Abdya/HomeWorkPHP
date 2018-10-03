@@ -11,11 +11,11 @@ class Stage
     {
         $this->singers[] = $singer;
     }
+
     public function takeTheirBallsInYourHand()
     {
         foreach ($this->singers as $singer) {
             $singer->sing();
         }
     }
-
 }
