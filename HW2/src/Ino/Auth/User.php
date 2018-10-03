@@ -4,11 +4,16 @@
 namespace Ino\Auth;
 
 
-class User
+class User implements \JsonSerializable
 {
     public const ROLE_ADMIN = "admin";
 
     public const ROLE_USER = "user";
+
+    /**
+     * @var mixed
+     */
+    private $id;
 
     /**
      * @var string
@@ -64,6 +69,22 @@ class User
      * @var string
      */
     private $timeLogin;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
 
     /**
      * @return string
@@ -241,11 +262,37 @@ class User
         $this->timeLogin = $timeLogin;
     }
 
-    public function __construct(string $login, string $email, string $name)
+    public function __construct($id, string $login, string $email, string $name)
     {
+        $this->id = $id;
         $this->login = $login;
         $this->email = $email;
         $this->name = $name;
     }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            "login" => $this->login,
+            "pass" => $this->passwordHash,
+            "name" => $this->name,
+            "email" => $this->email,
+            "time_reg" => $this->timeReg,
+            "role" => $this->role,
+            "active" => $this->active,
+            "time_edit" => $this->timeEdit,
+            "token" => $this->token,
+            "expire_date" => $this->expireDate,
+            "time_login" => $this->timeLogin,
+        ];
+    }
+
 
 }
