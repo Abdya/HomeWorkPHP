@@ -2,8 +2,8 @@
 require dirname(dirname(__FILE__)) . "/includes/common.php";
 $error = null;
 if (!empty($_SESSION["login"])) {
-    $user = find($_SESSION["login"]);
-    if ($user["role"] === ROLE_ADMIN) {
+    $user = \Ino\Core\Registry::getUserProvider()->getUserById($_SESSION["login"]);
+    if ($user->getRole() === ROLE_ADMIN) {
         header("Location: /user_list.php");
     } else {
         header("Location: /user_info.php");
@@ -13,32 +13,25 @@ if (!empty($_SESSION["login"])) {
 if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
     $enter_login = $_POST['enter_login'];
     $enter_password = $_POST['enter_password'];
-    $user = find($enter_login);
+    $user = \Ino\Core\Registry::getUserProvider()->getUserById($enter_login);
 
-    if ($user === null || !verify_the_fucking_password($enter_password, $user["pass"])) {
+    if ($user === null || !$user->isMatchingPassword($enter_password)) {
         $error = 'GO OUT OF HERE FUCKING JABA!';
     } else {
-        if ($user["active"] === false) {
+        if (!$user->isActive()) {
             $error = 'YOU SHALL NOT PASS!!!!111!1!!!';
         } else {
             $_SESSION["login"] = $enter_login;
-            login_time($_SESSION["login"]);
+            $user->updateLoginTime();
+            \Ino\Core\Registry::getUserProvider()->saveUser($user);
 
             if (!empty($_POST["remember"])) {
-                $tmp_token = token_gen($_SESSION["login"]);
-                $token_base64 = base64_encode($tmp_token);
-                if (!file_exists(TOKEN_DIR . "/{$_SESSION["login"]}")) {
-                    $path = TOKEN_DIR . "/{$_SESSION["login"]}";
-                    mkdir($path);
-                    $handle = fopen($path . "/$token_base64.json", "w+");
-                    fwrite($handle, time());
-                    fclose($handle);
-                }
+                $tmp_token = \Ino\Core\Registry::getUserTokenProvider()->generateToken($user->getId());
 
-                setcookie("user_token", base64_encode($_SESSION["login"] . ":" . $tmp_token), time() + 3600 * 24 * 7);
+                setcookie("user_token", base64_encode($user->getId() . ":" . $tmp_token), time() + 3600 * 24 * 7);
             }
 
-            if ($user["role"] === "admin") {
+            if ($user->getRole() === "admin") {
                 header("Location: /admin_start_page.php");
             } else {
                 header("Location: /user_info.php");

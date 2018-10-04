@@ -102,6 +102,11 @@ class User implements \JsonSerializable
         $this->login = $login;
     }
 
+    public function updateLoginTime(): void
+    {
+        $this->timeLogin = gmdate("Y-m-d H:i:s");
+    }
+
     /**
      * @return string
      */
@@ -116,6 +121,15 @@ class User implements \JsonSerializable
     public function setPasswordHash(string $passwordHash): void
     {
         $this->passwordHash = $passwordHash;
+    }
+
+    /**
+     * @param string $password
+     * @return bool
+     */
+    public function isMatchingPassword(string $password): bool
+    {
+        return verify_the_fucking_password($password, $this->passwordHash);
     }
 
     /**

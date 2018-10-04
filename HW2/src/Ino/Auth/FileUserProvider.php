@@ -48,11 +48,17 @@ class FileUserProvider implements UserProvider
         $user->setActive($userData["active"]);
         $user->setPasswordHash($userData["pass"]);
         $user->setRole($userData["role"]);
-        $user->setExpireDate($userData["expire_date"]);
-        $user->setTimeEdit($userData["time_edit"]);
+        if (isset($userData["expire_date"])) {
+            $user->setExpireDate($userData["expire_date"]);
+        }
+        if (isset($userData["time_edit"])) {
+            $user->setTimeEdit($userData["time_edit"]);
+        }
         $user->setTimeLogin($userData["time_login"]);
         $user->setTimeReg($userData["time_reg"]);
-        $user->setToken($userData["token"]);
+        if (isset($userData["token"])) {
+            $user->setToken($userData["token"]);
+        }
         return $user;
     }
 
