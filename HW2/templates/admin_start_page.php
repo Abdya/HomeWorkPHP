@@ -13,6 +13,6 @@
 
 </head>
 <body>
-<h1 class="h3 mb-3 font-weight-normal">Hello admin <?php echo $user["name"]?></h1>
+<h1 class="h3 mb-3 font-weight-normal">Hello admin <?php echo $user->getName() ?></h1>
 <a href="user_list.php" id="btn" class="btn btn-lg btn-primary btn-block" type="button">User list</a>
 </body>

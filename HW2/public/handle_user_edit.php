@@ -1,7 +1,7 @@
 <?php
 require "../includes/common.php";
-$user = $_GET["login"];
-if (!is_user_exists($user)){
+$userId = $_GET["login"];
+if (!\Ino\Core\Registry::getUserProvider()->isUserExists($userId)) {
     http_response_code(404);
     echo "User does not exists";
     exit;
@@ -28,25 +28,18 @@ if ($validated_data === false) {
     exit;
 }
 
+$user = \Ino\Core\Registry::getUserProvider()->getUserById($userId);
 
-$file = file_get_contents($path);
-$temp = json_decode($file, true);
+$user->setEmail($validated_data["email"]);
+$user->setName($validated_data["name"]);
+$user->setRole($_POST["role"]);
+$user->setActive(!empty($_POST["active"]));
+$user->setTimeEdit(gmdate("Y-m-d H:i:s"));
 
-
-unset($file);
-$new_user_data = [
-    "email" => $validated_data["email"],
-    "name" => $validated_data["name"],
-    "role" => $_POST["role"],
-    "active" => !empty($_POST["active"]),
-    "time_edit" => gmdate("Y-m-d H:i:s"),
-];
 if (!empty($validated_data["pass"])) {
-    $new_user_data["pass"] = hash_the_fucking_password($validated_data["pass"]);
+    $user->setPasswordHash(hash_the_fucking_password($validated_data["pass"]));
 }
 
-
-$temp = array_merge($temp, $new_user_data);
-file_put_contents($path, json_encode($temp));
+\Ino\Core\Registry::getUserProvider()->saveUser($user);
 
 header("Location: /user_edit.php?login=$user");

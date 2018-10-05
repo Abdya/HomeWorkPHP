@@ -15,14 +15,18 @@ if ($validated_data === false) {
     header("Location: /password_reset.php");
     exit;
 }
-$message = token_gen($validated_data["login"]);
-$new_data = [
-    "token" => $message,
-    "expire_date" => time() + 3600,
-];
-$login = find($validated_data["login"]);
-update_user_data($validated_data["login"],$new_data);
-mail($login["email"], 'Password Reset',"http://hw4.local/new_password.php?login={$validated_data["login"]}&token=$message");
+$tokenGenerator = new \Ino\Auth\TokenGenerator();
+
+$user = \Ino\Core\Registry::getUserProvider()->getUserById($validated_data["login"]);
+if ($user !== null) {
+    $message = $tokenGenerator->generateToken($validated_data["login"]);
+
+    $user->setToken($message);
+    $user->setExpireDate(time() + 3600);
+
+    mail($user->getEmail(), 'Password Reset',"http://hw4.local/new_password.php?login={$validated_data["login"]}&token=$message");
+}
+
 $_SESSION["password_reset"] = true;
 
 header("Location: /password_reset.php");

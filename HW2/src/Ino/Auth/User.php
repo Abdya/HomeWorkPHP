@@ -70,6 +70,13 @@ class User implements \JsonSerializable
      */
     private $timeLogin;
 
+    public function __construct(string $login, string $email, string $name)
+    {
+        $this->login = $login;
+        $this->email = $email;
+        $this->name = $name;
+    }
+
     /**
      * @return mixed
      */
@@ -274,14 +281,6 @@ class User implements \JsonSerializable
     public function setTimeLogin(string $timeLogin): void
     {
         $this->timeLogin = $timeLogin;
-    }
-
-    public function __construct($id, string $login, string $email, string $name)
-    {
-        $this->id = $id;
-        $this->login = $login;
-        $this->email = $email;
-        $this->name = $name;
     }
 
     /**

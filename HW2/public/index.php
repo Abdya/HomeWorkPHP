@@ -1,8 +1,8 @@
 <?php
 require dirname(dirname(__FILE__)) . "/includes/common.php";
 $error = null;
-if (!empty($_SESSION["login"])) {
-    $user = \Ino\Core\Registry::getUserProvider()->getUserById($_SESSION["login"]);
+if (\Ino\Core\Registry::getAuthenticationManager()->getAuthenticatedUser() !== null) {
+    $user = \Ino\Core\Registry::getAuthenticationManager()->getAuthenticatedUser();
     if ($user->getRole() === ROLE_ADMIN) {
         header("Location: /user_list.php");
     } else {
@@ -21,7 +21,7 @@ if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
         if (!$user->isActive()) {
             $error = 'YOU SHALL NOT PASS!!!!111!1!!!';
         } else {
-            $_SESSION["login"] = $enter_login;
+            \Ino\Core\Registry::getAuthenticationManager()->setAuthenticatedUser($user);
             $user->updateLoginTime();
             \Ino\Core\Registry::getUserProvider()->saveUser($user);
 

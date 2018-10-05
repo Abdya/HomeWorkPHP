@@ -25,21 +25,14 @@ function create()
         $errors = $gump->get_errors_array();
         return $errors;
     } else {
-        $validated_data["pass"] = hash_the_fucking_password($validated_data["pass"]);
-        $form = array(
-            "login" => $validated_data["login"],
-            "pass" => $validated_data["pass"],
-            "email" => $validated_data["email"],
-            "name" => $validated_data["name"],
-            "role" => ROLE_USER,
-            "active" => true,
-            "time_reg" => gmdate("Y-m-d H:i:s")
-        );
-        $complete_form = json_encode($form);
-        $handle = fopen(USERS_DIR . "/{$validated_data["login"]}.json", "w+");
-        fwrite($handle, $complete_form);
-        fclose($handle);
+        $user = new \Ino\Auth\User($validated_data["login"], $validated_data["email"], $validated_data["name"]);
+        $user->setPasswordHash(hash_the_fucking_password($validated_data["pass"]));
+        $user->setRole(\Ino\Auth\User::ROLE_USER);
+        $user->setActive(true);
+        $user->setTimeReg(gmdate("Y-m-d H:i:s"));
+        \Ino\Core\Registry::getUserProvider()->saveUser($user);
     }
+    return [];
 }
 
 require "../templates/sign_up.php";

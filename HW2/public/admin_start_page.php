@@ -1,6 +1,5 @@
 <?php
 require "../includes/common.php";
-$login = $_SESSION["login"];
 check_admin();
-$user = find($login);
+$user = \Ino\Core\Registry::getAuthenticationManager()->getAuthenticatedUser();
 require "../templates/admin_start_page.php";

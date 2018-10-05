@@ -44,8 +44,9 @@ class FileUserProvider implements UserProvider
      */
     private function mapUser(array $userData): User
     {
-        $user = new User($userData["login"], $userData["login"], $userData["email"], $userData["name"]);
+        $user = new User($userData["login"], $userData["email"], $userData["name"]);
         $user->setActive($userData["active"]);
+        $user->setId($userData["login"]);
         $user->setPasswordHash($userData["pass"]);
         $user->setRole($userData["role"]);
         if (isset($userData["expire_date"])) {

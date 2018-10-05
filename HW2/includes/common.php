@@ -3,17 +3,14 @@ require "config.php";
 require "../vendor/autoload.php";
 require "../autoload.php";
 GUMP::add_validator("user_exists", function ($field, $input, $param = null) {
-    return !is_user_exists(strtolower(trim($input[$field])));
+    return \Ino\Core\Registry::getUserProvider()->isUserExists(strtolower(trim($input[$field])));
 }, "User is already exists!");
 
 GUMP::add_validator("confirmation", function ($field, $input, $param = null) {
     return $input[$field] === $input[$param];
 }, "Passwords must match!");
 
-function is_user_exists($enter_login)
-{
-    return file_exists(USERS_DIR . "/$enter_login.json");
-}
+
 function find($enter_login)
 {
     $filename = USERS_DIR . "/$enter_login.json";
@@ -62,11 +59,12 @@ function login_time($login)
 };
 function check_admin()
 {
-    if (empty($_SESSION["login"]) || (($user = find($_SESSION["login"])) === null)) {
+    $user = \Ino\Core\Registry::getAuthenticationManager()->getAuthenticatedUser();
+    if ($user === null) {
         header("Location: /index.php");
         exit;
     };
-    if ($user["role"] !== "admin") {
+    if ($user->getRole() !== \Ino\Auth\User::ROLE_ADMIN) {
         header("Location: /info_user.php");
         exit;
     }
