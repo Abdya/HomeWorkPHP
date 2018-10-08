@@ -16,7 +16,7 @@ class SessionAuthenticationManager implements AuthenticationManager
         $this->provider = $provider;
     }
 
-    public function getAuthenticatedUser(): User
+    public function getAuthenticatedUser()
     {
         if (empty($_SESSION["authenticated_user_id"])) {
             return null;

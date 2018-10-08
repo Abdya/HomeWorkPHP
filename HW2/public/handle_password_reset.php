@@ -23,8 +23,9 @@ if ($user !== null) {
 
     $user->setToken($message);
     $user->setExpireDate(time() + 3600);
+    \Ino\Core\Registry::getUserProvider()->saveUser($user);
 
-    mail($user->getEmail(), 'Password Reset',"http://hw4.local/new_password.php?login={$validated_data["login"]}&token=$message");
+    mail($user->getEmail(), 'Password Reset',"http://hw4.local/new_password.php?id={$user->getId()}&token=$message");
 }
 
 $_SESSION["password_reset"] = true;

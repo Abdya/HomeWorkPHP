@@ -24,4 +24,5 @@ interface UserProvider
      */
     public function isUserExists($id): bool;
 
+    public function getAllUsers(): array;
 }

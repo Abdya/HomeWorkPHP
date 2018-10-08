@@ -1,9 +1,9 @@
 <?php
 require "../includes/common.php";
 if (!empty($_GET)) {
-    $login = $_GET["login"];
+    $id = $_GET["id"];
     $token = $_GET["token"];
-    $_SESSION["login"] = $login;
+    $_SESSION["id"] = $id;
     $_SESSION["token"] = $token;
 }
 

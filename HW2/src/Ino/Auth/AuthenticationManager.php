@@ -8,7 +8,7 @@ interface AuthenticationManager
     /**
      * @return User
      */
-    public function getAuthenticatedUser(): User;
+    public function getAuthenticatedUser();
 
     /**
      * @param User $user

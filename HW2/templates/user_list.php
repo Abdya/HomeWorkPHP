@@ -23,12 +23,12 @@
         </tr>
         </thead>
         <tbody>
-        <?php $big_boy = parse();
-        foreach ($big_boy as $value) { ?>
+
+        <?php foreach ($userList as $user) { ?>
             <tr>
 
-                <td><a href="user_edit.php?login=<?php echo $value["login"] ?>"><?php echo $value["login"] ?></a></td>
-                <td><?php echo $value['name'] ?></td>
+                <td><a href="user_edit.php?id=<?php echo $user->getId() ?>"><?php echo $user->getLogin() ?></a></td>
+                <td><?php echo $user->getName() ?></td>
 
             </tr>
         <?php } ?>

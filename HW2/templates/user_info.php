@@ -21,10 +21,10 @@
     <img class="mb-4" src="/assets/images/cat.gif" alt="" width="200" height="200">
     <div class="card" style="width: 18rem;">
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Ваше имечко: <?php echo $user["name"]?></li>
-            <li class="list-group-item">Ваш логинчик: <?php echo $user["login"]?></li>
-            <li class="list-group-item">Ваше мыльце: <?php echo $user["email"]?></li>
-            <li class="list-group-item">Ваша дата регистрации: <br> <?php echo date("d.m.y H:i:s",strtotime($user["time_reg"]))?> UTC</li>
+            <li class="list-group-item">Ваше имечко: <?php echo $user->getName() ?></li>
+            <li class="list-group-item">Ваш логинчик: <?php echo $user->getLogin() ?></li>
+            <li class="list-group-item">Ваше мыльце: <?php echo $user->getEmail() ?></li>
+            <li class="list-group-item">Ваша дата регистрации: <br> <?php echo date("d.m.y H:i:s",strtotime($user->getTimeReg()))?> UTC</li>
             <li class="list-group-item"><a href="/logout.php" type="submit" class="btn btn-primary">Logout</a></li>
         </ul>
     </div>

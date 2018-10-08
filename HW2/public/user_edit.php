@@ -1,16 +1,16 @@
 <?php
 require "../includes/common.php";
 check_admin();
-$login = $_GET["login"];
+$id = $_GET["id"];
 if (!empty($_SESSION["errors"])) {
     $errors = $_SESSION["errors"];
     unset($_SESSION["errors"]);
 }
 
-if (!is_user_exists($login)) {
+if (!Ino\Core\Registry::getUserProvider()->isUserExists($id)) {
     http_response_code(404);
     echo "User does not exists";
     exit;
 }
-$user = find($login); #проверка на логин
+$user = \Ino\Core\Registry::getUserProvider()->getUserById($id); #проверка на логин
 require "../templates/user_edit.php";

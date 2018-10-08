@@ -82,4 +82,15 @@ class FileUserProvider implements UserProvider
     {
         return $this->getUserById($id) !== null;
     }
+
+    public function getAllUsers(): array
+    {
+        $userList = [];
+        foreach (glob($this->path . "/*.json") as $filename) {
+            $userData = file_get_contents("$filename");
+            $userData = json_decode($userData, true);
+            $userList[] = $this->mapUser($userData);
+        }
+        return $userList;
+    }
 }

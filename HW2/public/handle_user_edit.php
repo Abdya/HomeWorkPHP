@@ -1,12 +1,11 @@
 <?php
 require "../includes/common.php";
-$userId = $_GET["login"];
+$userId = $_GET["id"];
 if (!\Ino\Core\Registry::getUserProvider()->isUserExists($userId)) {
     http_response_code(404);
     echo "User does not exists";
     exit;
 }
-$path = USERS_DIR . "/$user.json";
 
 $gump = new GUMP();
 $_POST = $gump->sanitize($_POST);
@@ -42,4 +41,4 @@ if (!empty($validated_data["pass"])) {
 
 \Ino\Core\Registry::getUserProvider()->saveUser($user);
 
-header("Location: /user_edit.php?login=$user");
+header("Location: /user_edit.php?id={$user->getId()}");

@@ -16,12 +16,12 @@
 </head>
 <body>
 
-<form class="form-signin" novalidate action="/handle_user_edit.php?login=<?php echo $login?>" method="post">
-    <h1 class="h3 mb-3 font-weight-normal">User: <?php echo $user["login"]?></h1>
-    <input type="text" id="inputLogin" class="form-control mb-3" disabled placeholder="Login" name= "login" value="<?php echo $user["login"] ?>">
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" value="<?php echo $user["email"] ?>">
+<form class="form-signin" novalidate action="/handle_user_edit.php?id=<?php echo $user->getId() ?>" method="post">
+    <h1 class="h3 mb-3 font-weight-normal">User: <?php echo $user->getLogin() ?></h1>
+    <input type="text" id="inputLogin" class="form-control mb-3" disabled placeholder="Login" name= "login" value="<?php echo $user->getLogin() ?>">
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" value="<?php echo $user->getEmail() ?>">
     <p class="mb-3 text-left"><?php echo !empty($errors["email"]) ? $errors["email"] : "" ?></p>
-    <input type="text" id="inputName" class="form-control" placeholder="Name" name="name" value="<?php echo $user["name"] ?>">
+    <input type="text" id="inputName" class="form-control" placeholder="Name" name="name" value="<?php echo $user->getName() ?>">
     <p class="mb-3 text-left"><?php echo !empty($errors["name"]) ? $errors["name"] : "" ?></p>
     <input type="password" id="inputPass" class="form-control" placeholder="NEW Password" name="pass">
     <p class="mb-3 text-left"><?php echo !empty($errors["pass"]) ? $errors["pass"] : "" ?></p>
@@ -30,7 +30,7 @@
         <select id="inputState" name="role"  class="form-control">
             <?php
             foreach ($roles as $role => $description) { ?>
-                <option value="<?php echo $role ?>" <?php if ($role === $user["role"]){ ?> selected<?php } ?>><?php echo $description ?></option><?php
+                <option value="<?php echo $role ?>" <?php if ($role === $user->getRole()){ ?> selected<?php } ?>><?php echo $description ?></option><?php
             }
             ?>
         </select>
@@ -39,7 +39,7 @@
         <div class="col-sm-2">Turn on/off</div>
         <div class="col-sm-10">
             <div class="form-check">
-                <input class="form-check-input" name="active" value="1" <?php if ($user["active"] === true){?> checked<?php } ?> type="checkbox" id="gridCheck1">
+                <input class="form-check-input" name="active" value="1" <?php if ($user->isActive() === true){?> checked<?php } ?> type="checkbox" id="gridCheck1">
             </div>
         </div>
     </div>

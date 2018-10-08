@@ -1,7 +1,6 @@
 <?php
 require "../includes/common.php";
-$login = $_SESSION["login"];
-$user = find($login);
+$user = \Ino\Core\Registry::getAuthenticationManager()->getAuthenticatedUser();
 if ($user === null) {
     header('Location: /index.php');
     exit;
