@@ -10,7 +10,7 @@ interface UserProvider
      * @param $id
      * @return User
      */
-    public function getUserById($id): User;
+    public function getUserById($id): ?User;
 
     /**
      * @param User $user

@@ -44,4 +44,9 @@ class Registry
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
     }
+
+    public static function getDbUserProvider()
+    {
+        return new DbUserProvider(self::getDbConnection());
+    }
 }
