@@ -17,7 +17,7 @@ if ($validated_data === false) {
 }
 $tokenGenerator = new \Ino\Auth\TokenGenerator();
 
-$user = \Ino\Core\Registry::getUserProvider()->getUserById($validated_data["login"]);
+$user = \Ino\Core\Registry::getUserProvider()->getUserByLogin($validated_data["login"]);
 if ($user !== null) {
     $message = $tokenGenerator->generateToken($validated_data["login"]);
 

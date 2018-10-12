@@ -3,7 +3,7 @@ require "config.php";
 require "../vendor/autoload.php";
 require "../autoload.php";
 GUMP::add_validator("user_exists", function ($field, $input, $param = null) {
-    return \Ino\Core\Registry::getUserProvider()->isUserExists(strtolower(trim($input[$field])));
+    return !\Ino\Core\Registry::getUserProvider()->isUserExists(strtolower(trim($input[$field])));
 }, "User is already exists!");
 
 GUMP::add_validator("confirmation", function ($field, $input, $param = null) {
@@ -11,18 +11,7 @@ GUMP::add_validator("confirmation", function ($field, $input, $param = null) {
 }, "Passwords must match!");
 
 
-function find($enter_login)
-{
-    $filename = USERS_DIR . "/$enter_login.json";
 
-    if (file_exists($filename)) {
-        $tmp_login = file_get_contents(USERS_DIR . "/$enter_login.json");
-        $tmp_login = json_decode($tmp_login, true);
-        return $tmp_login;
-    }
-
-    return null;
-}
 function parse()
 {
     $user_list_tmp = [];

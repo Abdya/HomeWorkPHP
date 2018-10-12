@@ -8,9 +8,15 @@ interface UserProvider
 {
     /**
      * @param $id
-     * @return User
+     * @return User|null
      */
     public function getUserById($id): ?User;
+
+    /**
+     * @param $login
+     * @return User|null
+     */
+    public function getUserByLogin($login): ?User;
 
     /**
      * @param User $user

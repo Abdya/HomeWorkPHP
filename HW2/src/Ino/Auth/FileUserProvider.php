@@ -38,6 +38,11 @@ class FileUserProvider implements UserProvider
         return null;
     }
 
+    public function getUserByLogin($login): ?User
+    {
+        return $this->getUserById($login);
+    }
+
     /**
      * @param array $userData
      * @return User

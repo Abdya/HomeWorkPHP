@@ -70,7 +70,7 @@ class User implements \JsonSerializable
      */
     private $timeLogin;
 
-    public function __construct(string $login, string $email, string $name)
+    public function __construct(?string $login, ?string $email, ?string $name)
     {
         $this->login = $login;
         $this->email = $email;
@@ -206,7 +206,7 @@ class User implements \JsonSerializable
     /**
      * @return string
      */
-    public function getTimeReg(): string
+    public function getTimeReg(): ?string
     {
         return $this->timeReg;
     }
@@ -222,7 +222,7 @@ class User implements \JsonSerializable
     /**
      * @return string
      */
-    public function getTimeEdit(): string
+    public function getTimeEdit(): ?string
     {
         return $this->timeEdit;
     }
@@ -238,7 +238,7 @@ class User implements \JsonSerializable
     /**
      * @return string
      */
-    public function getToken(): string
+    public function getToken(): ?string
     {
         return $this->token;
     }
@@ -256,7 +256,7 @@ class User implements \JsonSerializable
      */
     public function getExpireDate(): int
     {
-        return $this->expireDate;
+        return (int)$this->expireDate;
     }
 
     /**
@@ -270,7 +270,7 @@ class User implements \JsonSerializable
     /**
      * @return string
      */
-    public function getTimeLogin(): string
+    public function getTimeLogin(): ?string
     {
         return $this->timeLogin;
     }

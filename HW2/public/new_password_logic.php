@@ -3,7 +3,7 @@ require "../includes/common.php";
 $id = $_SESSION["id"];
 $token = $_SESSION["token"];
 $user = \Ino\Core\Registry::getUserProvider()->getUserById($id);
-if ($user->getToken() === $token && $user->getExpireDate() >= time()) {
+if ($user->getToken() === $token && strtotime($user->getExpireDate()) >= time()) {
     $gump = new GUMP();
     $_POST = $gump->sanitize($_POST);
     $gump->validation_rules(array(

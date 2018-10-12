@@ -13,7 +13,7 @@ if (\Ino\Core\Registry::getAuthenticationManager()->getAuthenticatedUser() !== n
 if (!empty($_POST['enter_login']) || !empty($_POST['enter_password'])) {
     $enter_login = $_POST['enter_login'];
     $enter_password = $_POST['enter_password'];
-    $user = \Ino\Core\Registry::getUserProvider()->getUserById($enter_login);
+    $user = \Ino\Core\Registry::getUserProvider()->getUserByLogin($enter_login);
 
     if ($user === null || !$user->isMatchingPassword($enter_password)) {
         $error = 'GO OUT OF HERE FUCKING JABA!';

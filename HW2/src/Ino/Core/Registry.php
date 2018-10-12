@@ -15,7 +15,7 @@ class Registry
 {
     public static function getUserProvider(): UserProvider
     {
-        return new FileUserProvider(USERS_DIR);
+        return new DbUserProvider(self::getDbConnection());
     }
 
     public static function getUserTokenProvider(): UserTokenProvider
@@ -43,10 +43,5 @@ class Registry
             echo $e->getMessage();
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
-    }
-
-    public static function getDbUserProvider()
-    {
-        return new DbUserProvider(self::getDbConnection());
     }
 }
